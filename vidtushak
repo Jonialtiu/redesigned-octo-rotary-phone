@@ -1,0 +1,45 @@
+#include <iostream>
+#include <cmath>
+using namespace std;
+
+int main() //Вариант 27
+{
+	int b, R;
+	int A, n = 0;
+	cout << "Enter the number 'b': "; cin >> b;
+	cout << "Enter the number 'R': "; cin >> R;
+	cout << "uslovie 'A': "; cin >> A;
+	int* X = new int[R];
+	double* Z = new double[R];
+	double sum = 0.0;
+	for (int i = 0; i < R; i++) {
+		cout << "X" << i + 1 << ": ";
+		cin >> X[i];
+		if (abs(X[i]) >= 1) {
+			Z[i] = (b * b + 3) / (X[i] * X[i] + 1);
+			cout << "Z" << i + 1 << " = " << Z[i] << endl;
+		}
+		if (abs(X[i]) < 1) {
+			double a = sin(X[i]);
+			Z[i] = 4.2 * (a * a);
+			cout << "Z" << i + 1 << " = " << Z[i] << endl;
+		}
+	}
+
+	for (int j = 0; j < R; j++) {
+		if (Z[j] < A) {
+			n = 1;
+		}
+		if (Z[j] >= A) {
+			Z[j] = 0;
+		}
+		sum += Z[j];
+	}
+	if (n > 0) {
+		cout << "Arithmetic mean Z: " << sum / n;
+	}
+	if (n == 0) {
+		cout << "No numbers greater than A";
+	}
+	return 0;
+}
