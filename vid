@@ -1,41 +1,55 @@
 #include <iostream>
 #include <cmath>
-using namespace std;
 
-//Вариант 1
+using namespace std;
+//----------------------Вариант 1-------------------------------------------//
 int main()
 {
+
 	int a, N;
-	int num = 0;
-	cout << "Enter the number 'a': ";
+	int num = 0, m = 0, max = 0;
+	cout << "Enter the number 'a': "; // Ввод числа а
 	cin >> a;
-	cout << "Enter the number 'N': ";
+	cout << "Enter the number 'N': "; // Ввод количества чисел в массиве
 	cin >> N;
-	int *X = new int[N];
-	double *R = new double[N];
+	int* X = new int[N];		      // Массив X[i]
+	double* R = new double[N];        
 	double sum = 0;
-	for (int i = 0; i < N; i++) 
+	int* Y = new int[N];              // Массив Y
+
+//-------------------------------Задача A-----------------------------------//
+	for (int i = 0; i < N; i++)
 	{
 		cout << "X" << i + 1 << ": ";
-		cin >> X[i];
+		cin >> X[i];                               // Ввод элементов в массив
 		if (X[i] < 1) {
 			int x = X[i] * X[i] + 2;
-			R[i] = (a - 3.0) / sqrt(x);
+			R[i] = (a - 3.0) / sqrt(x);            // (a-3)/(sqrt(X[i]^2 + 2))
+			cout << "R" << i + 1 << "= " << R[i] << "\n";
+		} else {
+			R[i] = 2.3 * a * X[i];                 // 2,3*a*X[i]
 			cout << "R" << i + 1 << "= " << R[i] << "\n";
 		}
-		if (X[i] >= 1) {
-			R[i] = 2.3 * a * X[i];
-			cout << "R" << i + 1 << "= " << R[i] << "\n";
-		}
+		if (X[i] > 0)               //
+			Y[i] = X[i];            // Для B задачи
+		else                        //
+			Y[i] = 0;               //
 	}
-
 	for (int i = 0; i < N; i++) {
 		if (R[i] < 0.0) {
-			num += 1;
-			sum = sum + R[i];
+			num += 1;               // Кол-во отрицательных чисел
+			sum = sum + R[i];       // Сумма отрицательных чисел
 		}
 	}
-	cout << "Number of negative numbers: " << num << "\n";
-	cout << "Sum of negative numbers: " << sum << "\n";
+	cout << "Number of negative numbers: " << num << endl;
+	cout << "Sum of negative numbers: " << sum << endl;
+
+//------------------------------Задача B------------------------------------//
+	for (int k = 0; k < N; k++) {
+		if (Y[k] > 0) m = m + 1;     // Кол-во положит. элементов
+		if (max < Y[k]) max = Y[k];  // Максимальное число в массиве Y
+	}
+	cout << "Кол-во положит. элементов: " << m << endl;
+	cout << "Максимальное число в массиве Y: " << max << endl;
 	return 0;
 }
