@@ -6,29 +6,34 @@ int main() //Вариант 27
 {
 	int b, R;
 	int A, n = 0;
+	int min = 0;
 	cout << "Enter the number 'b': "; cin >> b;
 	cout << "Enter the number 'R': "; cin >> R;
 	cout << "uslovie 'A': "; cin >> A;
 	int* X = new int[R];
 	double* Z = new double[R];
 	double sum = 0.0;
+	int* Y = new int[R];
 	for (int i = 0; i < R; i++) {
 		cout << "X" << i + 1 << ": ";
 		cin >> X[i];
 		if (abs(X[i]) >= 1) {
 			Z[i] = (b * b + 3) / (X[i] * X[i] + 1);
-			cout << "Z" << i + 1 << " = " << Z[i] << endl;
+			cout << " Z" << i + 1 << " = " << Z[i] << endl;
 		}
 		if (abs(X[i]) < 1) {
 			double a = sin(X[i]);
 			Z[i] = 4.2 * (a * a);
-			cout << "Z" << i + 1 << " = " << Z[i] << endl;
+			cout << " Z" << i + 1 << " = " << Z[i] << endl;
 		}
+		if (min > X[i]) min = X[i];
+		
+		Y[i] = X[i]; // для b
 	}
 
 	for (int j = 0; j < R; j++) {
 		if (Z[j] < A) {
-			n = 1;
+			n += 1;
 		}
 		if (Z[j] >= A) {
 			Z[j] = 0;
@@ -36,10 +41,18 @@ int main() //Вариант 27
 		sum += Z[j];
 	}
 	if (n > 0) {
-		cout << "Arithmetic mean Z: " << sum / n;
+		sum = sum / n;
+		cout << "Arithmetic mean Z: " << sum << endl;
 	}
 	if (n == 0) {
-		cout << "No numbers greater than A";
+		cout << "No numbers greater than A" << endl;
+	}
+	for (int l = 0; l < R; l++) {
+		if (X[l] >= 0)
+			Y[l] = X[l];
+		else
+			Y[l] = min;
+		cout << "Y[" << l + 1 << "]: " << Y[l] << endl;
 	}
 	return 0;
 }
