@@ -1,0 +1,10 @@
+C:\Users\Владимир\source\repos\FormLabWork4\bin\Debug\FormLabWork4.exe.config
+C:\Users\Владимир\source\repos\FormLabWork4\bin\Debug\FormLabWork4.exe
+C:\Users\Владимир\source\repos\FormLabWork4\bin\Debug\FormLabWork4.pdb
+C:\Users\Владимир\source\repos\FormLabWork4\obj\Debug\FormLabWork4.csprojAssemblyReference.cache
+C:\Users\Владимир\source\repos\FormLabWork4\obj\Debug\FormLabWork4.Form1.resources
+C:\Users\Владимир\source\repos\FormLabWork4\obj\Debug\FormLabWork4.Properties.Resources.resources
+C:\Users\Владимир\source\repos\FormLabWork4\obj\Debug\FormLabWork4.csproj.GenerateResource.cache
+C:\Users\Владимир\source\repos\FormLabWork4\obj\Debug\FormLabWork4.csproj.CoreCompileInputs.cache
+C:\Users\Владимир\source\repos\FormLabWork4\obj\Debug\FormLabWork4.exe
+C:\Users\Владимир\source\repos\FormLabWork4\obj\Debug\FormLabWork4.pdb
