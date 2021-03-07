@@ -75,18 +75,22 @@ namespace FormLabWork3
         }
         private void minus_Click(object sender, EventArgs e)
         {
-            if (textBox1.Text[0] == '-')
-                textBox1.Text = textBox1.Text.Remove(0, 1);
-            else textBox1.Text = "-" + textBox1.Text;
+            if (textBox1.Text != "")
+            {
+                if (textBox1.Text[0] == '-')
+                    textBox1.Text = textBox1.Text.Remove(0, 1);
+                else textBox1.Text = "-" + textBox1.Text;
+            }
         }
         private void Form1_KeyDown(object sender, KeyEventArgs e)
         {
-            if (e.KeyCode == Keys.Back)
+            if (e.KeyCode == Keys.Back && textBox1.Text.Length > 0)
+                textBox1.Text = textBox1.Text.Remove(textBox1.Text.Length - 1, 1);
+            else if (e.KeyCode == Keys.Escape)
             {
-                if (textBox1.Text.Length > 0)
-                {
-                    textBox1.Text = textBox1.Text.Remove(textBox1.Text.Length - 1, 0);
-                }
+                textBox1.Text = "0";
+                Value = 0.0;
+                Oper = 0;
             }
         }
         private void equate_Click(object sender, EventArgs e) // '='
@@ -114,24 +118,28 @@ namespace FormLabWork3
         }
         private void sum_Click(object sender, EventArgs e) // '+'
         {
+            equate_Click(sender, e);
             Value = Convert.ToDouble(textBox1.Text);
             Oper = 1;
             textBox1.Text = "0";
         }
         private void subtract_Click(object sender, EventArgs e) // '-'
         {
+            equate_Click(sender, e);
             Value = Convert.ToDouble(textBox1.Text);
             Oper = 2;
             textBox1.Text = "0";
         }
         private void multiply_Click(object sender, EventArgs e) // '*'
         {
+            equate_Click(sender, e);
             Value = Convert.ToDouble(textBox1.Text);
             Oper = 3;
             textBox1.Text = "0";
         }
         private void div_Click(object sender, EventArgs e) // '/'
-        {;
+        {
+            equate_Click(sender, e);
             Value = Convert.ToDouble(textBox1.Text);
             Oper = 4;
             textBox1.Text = "0";
