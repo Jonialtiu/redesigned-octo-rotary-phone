@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -8,101 +8,141 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace WindowsFormsApp4
+namespace FormLabWork3
 {
     public partial class Form1 : Form
     {
+        int Oper = 0;
+        Double Value = 0;
         public Form1()
         {
             InitializeComponent();
         }
-
-        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        private void Edit1_Click(object sender, EventArgs e)
         {
-            switch(comboBox1.SelectedIndex)
+            if (textBox1.Text == "0") textBox1.Text = "1";
+            else textBox1.Text = textBox1.Text + "1";
+        }
+        private void Edit2_Click(object sender, EventArgs e)
+        {
+            if (textBox1.Text == "0") textBox1.Text = "2";
+            else textBox1.Text = textBox1.Text + "2";
+        }
+        private void Edit3_Click(object sender, EventArgs e)
+        {
+            if (textBox1.Text == "0") textBox1.Text = "3";
+            else textBox1.Text = textBox1.Text + "3";
+        }
+        private void Edit4_Click(object sender, EventArgs e)
+        {
+            if (textBox1.Text == "0") textBox1.Text = "4";
+            else textBox1.Text = textBox1.Text + "4";
+        }
+        private void Edit5_Click(object sender, EventArgs e)
+        {
+            if (textBox1.Text == "0") textBox1.Text = "5";
+            else textBox1.Text = textBox1.Text + "5";
+        }
+        private void Edit6_Click(object sender, EventArgs e)
+        {
+            if (textBox1.Text == "0") textBox1.Text = "6";
+            else textBox1.Text = textBox1.Text + "6";
+        }
+        private void Edit7_Click(object sender, EventArgs e)
+        {
+            if (textBox1.Text == "0") textBox1.Text = "7";
+            else textBox1.Text = textBox1.Text + "7";
+        }
+        private void Edit8_Click(object sender, EventArgs e)
+        {
+            if (textBox1.Text == "0") textBox1.Text = "8";
+            else textBox1.Text = textBox1.Text + "8";
+        }
+        private void Edit9_Click(object sender, EventArgs e)
+        {
+            if (textBox1.Text == "0") textBox1.Text = "9";
+            else textBox1.Text = textBox1.Text + "9";
+        }
+        private void Edit0_Click(object sender, EventArgs e)
+        {
+            if (textBox1.Text == "0") textBox1.Text = "0";
+            else textBox1.Text = textBox1.Text + "0";
+        }
+        private void fraction_Click(object sender, EventArgs e)
+        {
+            if (textBox1.Text.LastIndexOf(',') < 0)
+                textBox1.Text = textBox1.Text + ",";
+        }
+        private void minus_Click(object sender, EventArgs e)
+        {
+            if (textBox1.Text != "")
             {
-                case 0:
-                    this.BackColor = Control.DefaultBackColor;
-                    break;
-                case 1:
-                    this.BackColor = Color.Red;
-                    break;
-                case 2:
-                    this.BackColor = Color.Green;
-                    break;
-                case 3:
-                    this.BackColor = Color.Blue;
-                    break;
+                if (textBox1.Text[0] == '-')
+                    textBox1.Text = textBox1.Text.Remove(0, 1);
+                else textBox1.Text = "-" + textBox1.Text;
             }
         }
-
-        private void comboBox2_SelectedIndexChanged(object sender, EventArgs e)
+        private void Form1_KeyDown(object sender, KeyEventArgs e)
         {
-            MessageBox.Show(comboBox2.Text);
+            if (e.KeyCode == Keys.Back && textBox1.Text.Length > 0)
+                textBox1.Text = textBox1.Text.Remove(textBox1.Text.Length - 1, 1);
+            else if (e.KeyCode == Keys.Escape)
+            {
+                textBox1.Text = "0";
+                Value = 0.0;
+                Oper = 0;
+            }
         }
-
-        private void listBox1_DoubleClick(object sender, EventArgs e)
+        private void equate_Click(object sender, EventArgs e) // '='
         {
-            MessageBox.Show(listBox1.SelectedItem.ToString());
+            Double Value2 = Convert.ToDouble(textBox1.Text);
+            Double Result = Value2;
+            switch (Oper)
+            {
+                case 1:
+                    Result = Value + Value2;
+                    break;
+                case 2:
+                    Result = Value - Value2;
+                    break;
+                case 3:
+                    Result = Value * Value2;
+                    break;
+                case 4:
+                    Result = Value / Value2;
+                    break;
+            }
+            textBox1.Text = Result.ToString();
+            Value = 0;
+            Oper = 0;
         }
-
-        private void button1_Click(object sender, EventArgs e)
+        private void sum_Click(object sender, EventArgs e) // '+'
         {
-            comboBox2.Items.Add(textBox1.Text);
+            equate_Click(sender, e);
+            Value = Convert.ToDouble(textBox1.Text);
+            Oper = 1;
+            textBox1.Text = "0";
         }
-
-        private void button2_Click(object sender, EventArgs e)
+        private void subtract_Click(object sender, EventArgs e) // '-'
         {
-            listBox1.Items.Add(textBox1.Text);
+            equate_Click(sender, e);
+            Value = Convert.ToDouble(textBox1.Text);
+            Oper = 2;
+            textBox1.Text = "0";
         }
-
-        private void button3_Click(object sender, EventArgs e)
+        private void multiply_Click(object sender, EventArgs e) // '*'
         {
-            if (listBox1.SelectedIndex >= 0)
-                listBox1.Items.Remove(listBox1.SelectedItem);
+            equate_Click(sender, e);
+            Value = Convert.ToDouble(textBox1.Text);
+            Oper = 3;
+            textBox1.Text = "0";
         }
-
-        private void button5_Click(object sender, EventArgs e)
+        private void div_Click(object sender, EventArgs e) // '/'
         {
-            if (listBox1.SelectedIndex < listBox1.Items.Count - 1)
-                listBox1.SelectedIndex = listBox1.SelectedIndex + 1;
-        }
-
-        private void button4_Click(object sender, EventArgs e)
-        {
-            if (listBox1.SelectedIndex > 0)
-                listBox1.SelectedIndex = listBox1.SelectedIndex - 1;
-        }
-
-        private void button6_Click(object sender, EventArgs e)
-        {
-            listBox1.Items.Insert(0, comboBox2.Text);
-        }
-
-        private void button7_Click(object sender, EventArgs e)
-        {
-            if (listBox1.SelectedIndex >= 0)
-                comboBox2.Items.Insert(0, listBox1.SelectedItem.ToString());
-        }
-
-        private void button8_Click(object sender, EventArgs e)
-        {
-            comboBox2.Items.Clear();
-        }
-
-        private void button9_Click(object sender, EventArgs e)
-        {
-            listBox1.Items.Clear();
-        }
-
-        private void button10_Click(object sender, EventArgs e)
-        {
-            comboBox2.Items.AddRange(richTextBox1.Lines);
-        }
-
-        private void button11_Click(object sender, EventArgs e)
-        {
-            listBox1.Items.AddRange(richTextBox1.Lines);
+            equate_Click(sender, e);
+            Value = Convert.ToDouble(textBox1.Text);
+            Oper = 4;
+            textBox1.Text = "0";
         }
     }
 }
